@@ -5,7 +5,7 @@ const Label = styled.label``;
 
 const Input = styled.input``;
 
-const Checkbox = ({ onClick }) => {
+const CheckBox = ({ onClick }) => {
   return (
     <Label className="checkbox" onClick={onClick}>
       <Input type="checkbox" />
@@ -13,4 +13,4 @@ const Checkbox = ({ onClick }) => {
   );
 };
 
-export default Checkbox;
+export default CheckBox;

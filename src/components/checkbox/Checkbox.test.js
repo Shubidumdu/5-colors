@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../__testUtils__';
 import React from 'react';
-import Checkbox from './Checkbox';
+import Checkbox from './CheckBox';
 
 describe('Checkbox Component', () => {
   test(`should shows properly`, () => {
