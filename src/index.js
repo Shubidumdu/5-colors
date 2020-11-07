@@ -3,15 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './style.scss';
 import App from './App';
-
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './redux';
+import logger from 'redux-logger';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 
+const store =
+  process.env.NODE_ENV === 'production'
+    ? createStore(rootReducer)
+    : createStore(rootReducer, applyMiddleware(logger));
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Logo from '../components/image/Logo';
 import Button from '../components/button/Button';
 import RoundButton from '../components/button/RoundButton';
+import { useHistory } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -35,9 +36,13 @@ const LogoContainer = styled.div`
 const ButtonWrap = styled.div``;
 
 const Main = () => {
+  const history = useHistory();
+
   const onHelp = () => {};
   const onInfo = () => {};
-  const onPictureStart = () => {};
+  const onPictureStart = () => {
+    history.push('/upload');
+  };
   const onManualStart = () => {};
 
   return (

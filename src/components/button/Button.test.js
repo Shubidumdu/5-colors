@@ -16,6 +16,13 @@ describe(`Button Component`, () => {
     expect(onClick).toBeCalled();
   });
 
+  test(`can be disabled`, () => {
+    const onClick = jest.fn();
+    render(<Button disabled>테스트</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+  });
+
   describe(`can change own size`, () => {
     test(`to small size`, () => {
       render(<Button size="small">테스트</Button>);

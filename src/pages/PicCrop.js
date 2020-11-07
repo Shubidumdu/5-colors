@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
 import Button from '../components/button/Button';
 import CheckBox from '../components/checkbox/CheckBox';
 import Color from '../components/color/Color';
 import Card from '../components/card/Card';
+import Cropper from '../components/cropper/Cropper';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadImage } from '../redux/image';
-import loadImage from 'blueimp-load-image';
 
 const Container = styled.div``;
 
@@ -42,53 +41,42 @@ const CheckBoxSet = styled.div``;
 
 const CheckBoxContainer = styled.div``;
 
-const PicUpload = () => {
+const PicCrop = () => {
   const history = useHistory();
-  const image = useSelector((state) => state.image);
   const dispatch = useDispatch();
+  const image = useSelector((state) => state.image);
+  const imageBlob = useMemo(() => URL.createObjectURL(image), [image]);
   const onHelp = () => {};
   const onInfo = () => {};
   const onFileUpload = (e) => {
     const file = e.target.files[0];
-    // 이미지 핸들링 필요
-    loadImage(
-      file,
-      (img) => {
-        console.log(img);
-      },
-      { orientation: true },
-    );
-    dispatch(uploadImage(file));
+    console.log(file);
   };
+  const onUpload = () => {};
   const onBack = () => {
     history.goBack();
   };
-  const onNext = () => {
-    history.push('/crop');
-  };
+
+  const onCrop = (crop, percentCrop) => {};
+  const onBefore = () => {};
+  const onNext = () => {};
+  const onResult = () => {};
+  const [imgSrc, setImg] = useState('');
+  const [filtering, setFiltering] = useState(false);
+  const [colors, setColors] = useState([]);
 
   return (
     <Container>
       <Header onHelp={onHelp} onInfo={onInfo} />
       <Card>
         <Content>
-          <Desc>사진을 업로드해 주세요.</Desc>
-          <ButtonWrap className="buttons">
-            <label htmlFor="upload">
-              <Button>업로드</Button>
-            </label>
-            <FileInput
-              id="upload"
-              type="file"
-              accept="image/png, image/jpeg"
-              onChange={onFileUpload}
-            />
-          </ButtonWrap>
+          <div className="section">
+            <Cropper src={imageBlob} />
+          </div>
+          <Desc>사진을 적절히 잘라주세요.</Desc>
           <ButtonWrap className="buttons">
             <Button onClick={onBack}>뒤로</Button>
-            <Button onClick={onNext} disabled={!image}>
-              다음
-            </Button>
+            <Button onClick={onNext}>다음</Button>
           </ButtonWrap>
         </Content>
       </Card>
@@ -96,4 +84,4 @@ const PicUpload = () => {
   );
 };
 
-export default PicUpload;
+export default PicCrop;

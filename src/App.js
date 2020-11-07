@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './pages/Main';
+import PicCrop from './pages/PicCrop';
 import PicUpload from './pages/PicUpload';
 import Result from './pages/Result';
 
@@ -10,6 +11,7 @@ const routes = [
     path: '/',
   },
   { Component: PicUpload, path: '/upload' },
+  { Component: PicCrop, path: '/crop' },
   { Component: Result, path: '/result' },
 ];
 
