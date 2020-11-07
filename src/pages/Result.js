@@ -3,6 +3,7 @@ import Header from '../components/header/Header';
 import styled from 'styled-components';
 import Button from '../button/Button';
 import ColorSet from '../components/color/ColorSet';
+import Card from '../components/card/Card';
 
 const Container = styled.div``;
 
@@ -14,7 +15,7 @@ const Desc = styled.div``;
 
 const ButtonWrap = styled.div``;
 
-const Main = () => {
+const Result = () => {
   const onHelp = () => {};
   const onInfo = () => {};
   const onRetry = () => {};
@@ -39,4 +40,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Result;

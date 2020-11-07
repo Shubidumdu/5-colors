@@ -8,7 +8,7 @@ const Img = styled.img`
 `;
 
 const Logo = () => {
-  return <Img alt="logo" src={img}></Img>;
+  return <Img alt="logo" src={img} />;
 };
 
 export default Logo;

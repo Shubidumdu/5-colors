@@ -15,4 +15,27 @@ describe(`Button Component`, () => {
     userEvent.click(button);
     expect(onClick).toBeCalled();
   });
+
+  describe(`can change own size`, () => {
+    test(`to small size`, () => {
+      render(<Button size="small">테스트</Button>);
+      const button = screen.getByRole('button');
+      userEvent.click(button);
+      expect(button).toHaveClass('is-small');
+    });
+
+    test(`to medium size`, () => {
+      render(<Button size="medium">테스트</Button>);
+      const button = screen.getByRole('button');
+      userEvent.click(button);
+      expect(button).toHaveClass('is-medium');
+    });
+
+    test(`to large size`, () => {
+      render(<Button size="large">테스트</Button>);
+      const button = screen.getByRole('button');
+      userEvent.click(button);
+      expect(button).toHaveClass('is-large');
+    });
+  });
 });

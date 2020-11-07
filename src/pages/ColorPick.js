@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
-import Button from '../button/Button';
+import Button from '../components/button/Button';
 import Color from '../components/color/Color';
+import Card from '../components/card/Card';
 import ColorPicker from '../components/colorpicker';
 import DeleteButton from '../components/button/DeleteButton';
 
@@ -29,7 +30,7 @@ const ColorContainer = (color) => {
   );
 };
 
-const Main = () => {
+const ColorPick = () => {
   const onHelp = () => {};
   const onInfo = () => {};
   const onBack = () => {};
@@ -60,4 +61,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default ColorPick;

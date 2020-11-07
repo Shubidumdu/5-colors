@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
-import Button from '../button/Button';
+import Button from '../components/button/Button';
 import CheckBox from '../components/checkbox/CheckBox';
 import Color from '../components/color/Color';
+import Card from '../components/card/Card';
 
 const Container = styled.div``;
 
@@ -19,7 +20,7 @@ const CheckBoxSet = styled.div``;
 
 const CheckBoxContainer = styled.div``;
 
-const Main = () => {
+const PicUpload = () => {
   const onHelp = () => {};
   const onInfo = () => {};
   const onUpload = () => {};
@@ -72,4 +73,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default PicUpload;
