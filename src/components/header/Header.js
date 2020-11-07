@@ -5,27 +5,31 @@ import Logo from '../image/Logo';
 
 const Container = styled.header`
   width: 100%;
+  background: #fff;
+  z-index: 1;
+  position: fixed;
   display: flex;
+  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  height: 4rem;
+  box-shadow: 0px 1px 6px lightgrey;
 `;
 
 const LogoContainer = styled.div`
   display: flex;
-  height: 6rem;
+  height: 4rem;
 `;
 
 const LogoWrap = styled.div`
   align-self: center;
-  margin-left: 0.5rem;
-  width: 5rem;
-  height: 5rem;
+  width: 3rem;
+  height: 3rem;
 `;
 
 const LogoTitle = styled.div`
   font-family: BMJUA;
-  font-size: 3rem;
+  font-size: 2rem;
   display: flex;
   margin-left: 1rem;
   align-items: center;

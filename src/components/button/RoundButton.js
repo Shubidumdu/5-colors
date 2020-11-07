@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
   font-weight: bold;
+  width: 40px;
+  border-radius: 40px;
   & + & {
     margin-left: 1rem;
   }

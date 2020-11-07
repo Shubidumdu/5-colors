@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './pages/Main';
 import PicUpload from './pages/PicUpload';
+import Result from './pages/Result';
 
 const routes = [
   {
@@ -9,6 +10,7 @@ const routes = [
     path: '/',
   },
   { Component: PicUpload, path: '/upload' },
+  { Component: Result, path: '/result' },
 ];
 
 function App() {

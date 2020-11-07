@@ -46,7 +46,7 @@ const Main = () => {
         <RoundButton onClick={onInfo}>i</RoundButton>
         <RoundButton onClick={onHelp}>?</RoundButton>
       </TopButtonWrap>
-      <TitleWrap>
+      <TitleWrap className="section">
         <LogoContainer>
           <figure className="image is-square">
             <Logo />
