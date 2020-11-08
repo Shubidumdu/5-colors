@@ -1,9 +1,29 @@
-export const getCroppedImg = (image, crop, fileName) => {
+import loadImage from 'blueimp-load-image';
+
+export const getCroppedImg = async (image, crop) => {
   const canvas = document.createElement('canvas');
   const scaleX = image.naturalWidth / image.width;
   const scaleY = image.naturalHeight / image.height;
-  canvas.width = crop.width;
-  canvas.height = crop.height;
+
+  const originWidth = crop.width * scaleX;
+  const originHeight = crop.height * scaleY;
+
+  const MAX_WIDTH = 1200;
+  const MAX_HEIGHT = 1200 / (16 / 9);
+  let targetWidth = originWidth,
+    targetHeight = originHeight;
+  if (originWidth > MAX_WIDTH || originHeight > MAX_HEIGHT) {
+    if (originWidth / originHeight > MAX_WIDTH / MAX_HEIGHT) {
+      targetWidth = MAX_WIDTH;
+      targetHeight = Math.round(MAX_WIDTH * (originHeight / originWidth));
+    } else {
+      targetHeight = MAX_HEIGHT;
+      targetWidth = Math.round(MAX_HEIGHT * (originWidth / originHeight));
+    }
+  }
+
+  canvas.width = targetWidth;
+  canvas.height = targetHeight;
   const ctx = canvas.getContext('2d');
 
   ctx.drawImage(
@@ -14,22 +34,15 @@ export const getCroppedImg = (image, crop, fileName) => {
     crop.height * scaleY,
     0,
     0,
-    crop.width,
-    crop.height,
+    targetWidth,
+    targetHeight,
   );
 
-  // As Base64 string
-  // const base64Image = canvas.toDataURL('image/jpeg');
+  const TYPE = 'image/png';
+  const base64 = canvas.toDataURL('image/png').split(',')[1];
 
-  // As a blob
-  return new Promise((resolve, reject) => {
-    canvas.toBlob(
-      (blob) => {
-        blob.name = fileName;
-        resolve(blob);
-      },
-      'image/png',
-      1,
-    );
-  });
+  return {
+    file: base64,
+    type: TYPE,
+  };
 };

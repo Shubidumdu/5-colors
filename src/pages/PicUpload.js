@@ -50,15 +50,15 @@ const PicUpload = () => {
   const onInfo = () => {};
   const onFileUpload = (e) => {
     const file = e.target.files[0];
-    // 이미지 핸들링 필요
     loadImage(
       file,
       (img) => {
-        console.log(img);
+        img.toBlob((blob) => {
+          dispatch(uploadImage(blob));
+        }, 'image/png');
       },
-      { orientation: true },
+      { orientation: true, canvas: true },
     );
-    dispatch(uploadImage(file));
   };
   const onBack = () => {
     history.goBack();
