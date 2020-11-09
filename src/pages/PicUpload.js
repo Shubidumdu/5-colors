@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import CheckBox from '../components/checkbox/CheckBox';
-import Color from '../components/color/Color';
-import Card from '../components/card/Card';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { uploadImage } from '../redux/image';
-import loadImage from 'blueimp-load-image';
+import React, { useState } from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Color from "../components/color/Color";
+import Card from "../components/card/Card";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadImage } from "../redux/image";
+import loadImage from "blueimp-load-image";
 
 const Container = styled.div``;
 
@@ -55,16 +54,16 @@ const PicUpload = () => {
       (img) => {
         img.toBlob((blob) => {
           dispatch(uploadImage(blob));
-        }, 'image/png');
+        }, "image/png");
       },
-      { orientation: true, canvas: true },
+      { orientation: true, canvas: true }
     );
   };
   const onBack = () => {
     history.goBack();
   };
   const onNext = () => {
-    history.push('/crop');
+    history.push("/crop");
   };
 
   return (

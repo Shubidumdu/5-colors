@@ -4,8 +4,8 @@ import styled from "styled-components";
 import Button from "../components/button/Button";
 import Color from "../components/color/Color";
 import Card from "../components/card/Card";
-import ColorPicker from "../components/colorpicker/ColorPicker";
 import DeleteButton from "../components/button/DeleteButton";
+import { useSelector } from "react-redux";
 
 const Container = styled.div``;
 
@@ -33,20 +33,32 @@ const ColorContainer = ({ color }) => {
   );
 };
 
-const ColorPick = () => {
+const picResult = [
+  {
+    type: "upcloth",
+    color: "(0, 0, 0)",
+  },
+];
+
+const ColorEdit = () => {
   const onHelp = () => {};
   const onInfo = () => {};
   const onBack = () => {};
   const onResult = () => {};
-  const colors = ["#000000", "#000000"];
+  const cropped = useSelector((state) => state.image.cropped);
 
   return (
     <Container>
       <Header onHelp={onHelp} onInfo={onInfo} />
       <Card>
         <Content>
-          <Desc>포함하고자 하는 색들을 추가해주세요!</Desc>
-          <ColorPicker />
+          <section className="section">
+            <img src={cropped} />
+          </section>
+          <Desc>추가하고자 하는 색들을 골라주세요!</Desc>
+          <ColorItem>
+            <ColorContainer color="#000000" />
+          </ColorItem>
           <ButtonWrap>
             <Button onClick={onBack}>뒤로</Button>
             <Button onClick={onResult}>결과 보기</Button>
@@ -57,4 +69,4 @@ const ColorPick = () => {
   );
 };
 
-export default ColorPick;
+export default ColorEdit;

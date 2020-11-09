@@ -1,7 +1,7 @@
-import loadImage from 'blueimp-load-image';
+import loadImage from "blueimp-load-image";
 
 export const getCroppedImg = async (image, crop) => {
-  const canvas = document.createElement('canvas');
+  const canvas = document.createElement("canvas");
   const scaleX = image.naturalWidth / image.width;
   const scaleY = image.naturalHeight / image.height;
 
@@ -24,7 +24,7 @@ export const getCroppedImg = async (image, crop) => {
 
   canvas.width = targetWidth;
   canvas.height = targetHeight;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
 
   ctx.drawImage(
     image,
@@ -35,14 +35,10 @@ export const getCroppedImg = async (image, crop) => {
     0,
     0,
     targetWidth,
-    targetHeight,
+    targetHeight
   );
 
-  const TYPE = 'image/png';
-  const base64 = canvas.toDataURL('image/png').split(',')[1];
+  const base64 = canvas.toDataURL("image/png");
 
-  return {
-    file: base64,
-    type: TYPE,
-  };
+  return base64;
 };
