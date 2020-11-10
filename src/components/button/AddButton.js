@@ -1,8 +1,10 @@
-import React from 'react';
+import React from "react";
+import { MdAdd } from "react-icons/md";
 
-const AddButton = ({ onClick, children }) => {
+const AddButton = ({ onClick, children, ...rest }) => {
   return (
-    <button onClick={onClick} className="button is-primary">
+    <button onClick={onClick} className="button is-primary" {...rest}>
+      <MdAdd />
       {children}
     </button>
   );
