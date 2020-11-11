@@ -43,7 +43,9 @@ const Main = () => {
   const onPictureStart = () => {
     history.push('/upload');
   };
-  const onManualStart = () => {};
+  const onManualStart = () => {
+    history.push('/color/pick');
+  };
 
   return (
     <Container>

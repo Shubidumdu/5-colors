@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ColorCircle = styled.div`
   width: 2rem;
@@ -7,11 +7,14 @@ const ColorCircle = styled.div`
   border-radius: 2rem;
   border: 2px solid lightgrey;
   background: ${({ $background }) => $background};
-  cursor: pointer;
 `;
 
 const Color = ({ color, ...rest }) => {
-  return <ColorCircle data-testid="color" $background={color} {...rest} />;
+  const parsedColor = /\(.*\)/.test(color) ? `rgb${color}` : color;
+
+  return (
+    <ColorCircle data-testid="color" $background={parsedColor} {...rest} />
+  );
 };
 
 export default Color;

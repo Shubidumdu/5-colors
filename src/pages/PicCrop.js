@@ -1,17 +1,18 @@
-import React, { useMemo, useState } from "react";
-import Header from "../components/header/Header";
-import styled from "styled-components";
-import Button from "../components/button/Button";
-import Color from "../components/color/Color";
-import Card from "../components/card/Card";
-import Cropper from "../components/cropper/Cropper";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import loadImage from "blueimp-load-image";
-import { cropImage, uploadImage } from "../redux/image";
-import { getCroppedImg } from "../components/cropper/util";
-import { analyzeImage } from "../api/etri";
-import parseDataURL from "../util/parseBase64";
+import React, { useMemo, useState } from 'react';
+import Header from '../components/header/Header';
+import styled from 'styled-components';
+import Button from '../components/button/Button';
+import Color from '../components/color/Color';
+import Card from '../components/card/Card';
+import Cropper from '../components/cropper/Cropper';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import loadImage from 'blueimp-load-image';
+import { cropImage, uploadImage } from '../redux/image';
+import { getCroppedImg } from '../components/cropper/util';
+import { analyzeImage } from '../api/etri';
+import parseDataURL from '../util/parseBase64';
+import { postPicture } from '../redux/result';
 
 const Container = styled.div``;
 
@@ -63,9 +64,9 @@ const PicCrop = () => {
   };
   const croppedImg = useSelector((state) => state.image.cropped);
   const onNext = async () => {
-    const parsed = parseDataURL(croppedImg);
-    const result = await analyzeImage(parsed);
-    history.push("/color/edit");
+    const { type, file } = parseDataURL(croppedImg);
+    dispatch(postPicture(type, file));
+    history.push('/result/picture');
   };
 
   return (

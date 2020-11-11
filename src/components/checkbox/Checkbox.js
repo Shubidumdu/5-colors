@@ -5,9 +5,9 @@ const Label = styled.label``;
 
 const Input = styled.input``;
 
-const CheckBox = ({ onClick }) => {
+const CheckBox = ({ ...rest }) => {
   return (
-    <Label className="checkbox" onClick={onClick}>
+    <Label className="checkbox is-large" {...rest}>
       <Input type="checkbox" />
     </Label>
   );

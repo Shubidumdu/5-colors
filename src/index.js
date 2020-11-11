@@ -10,11 +10,12 @@ import logger from 'redux-logger';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
+import ReduxThunk from 'redux-thunk';
 
 const store =
   process.env.NODE_ENV === 'production'
     ? createStore(rootReducer)
-    : createStore(rootReducer, applyMiddleware(logger));
+    : createStore(rootReducer, applyMiddleware(ReduxThunk, logger));
 
 ReactDOM.render(
   <React.StrictMode>

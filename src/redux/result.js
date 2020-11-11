@@ -1,10 +1,10 @@
-import { combineColors } from "../api/colormind";
-import { analyzeImage } from "../api/etri";
+import { combineColors } from '../api/colormind';
+import { analyzeImage } from '../api/etri';
 
-const GET_LOADING = "result/LOADING";
-const GET_ERROR = "result/ERROR";
-const POST_PICTURE_SUCCESS = "result/POST_PICTURE_SUCCESS";
-const POST_COLOR_SUCCESS = "result/POST_COLOR_SUCCESS";
+const GET_LOADING = 'result/LOADING';
+const GET_ERROR = 'result/ERROR';
+const POST_PICTURE_SUCCESS = 'result/POST_PICTURE_SUCCESS';
+const POST_COLOR_SUCCESS = 'result/POST_COLOR_SUCCESS';
 
 export const postPicture = (type, base64) => async (dispatch) => {
   dispatch({ type: GET_LOADING });
