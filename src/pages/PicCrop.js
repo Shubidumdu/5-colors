@@ -11,6 +11,7 @@ import loadImage from "blueimp-load-image";
 import { cropImage, uploadImage } from "../redux/image";
 import { getCroppedImg } from "../components/cropper/util";
 import { analyzeImage } from "../api/etri";
+import parseDataURL from "../util/parseBase64";
 
 const Container = styled.div``;
 
@@ -62,6 +63,8 @@ const PicCrop = () => {
   };
   const croppedImg = useSelector((state) => state.image.cropped);
   const onNext = async () => {
+    const parsed = parseDataURL(croppedImg);
+    const result = await analyzeImage(parsed);
     history.push("/color/edit");
   };
 

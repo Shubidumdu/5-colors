@@ -49,8 +49,7 @@ const ColorPick = () => {
     history.goBack();
   };
   const onResult = async () => {
-    const result = combineColors(colors);
-    console.log(result);
+    const result = await combineColors(colors);
   };
   const [colors, setColors] = useState([]);
   const [color, setColor] = useState({

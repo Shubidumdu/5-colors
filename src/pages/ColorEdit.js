@@ -6,6 +6,8 @@ import Color from "../components/color/Color";
 import Card from "../components/card/Card";
 import DeleteButton from "../components/button/DeleteButton";
 import { useSelector } from "react-redux";
+import parseDataURL from "../util/parseBase64";
+import { analyzeImage } from "../api/etri";
 
 const Container = styled.div``;
 
@@ -44,7 +46,7 @@ const ColorEdit = () => {
   const onHelp = () => {};
   const onInfo = () => {};
   const onBack = () => {};
-  const onResult = () => {};
+  const onResult = async () => {};
   const cropped = useSelector((state) => state.image.cropped);
 
   return (
@@ -56,9 +58,6 @@ const ColorEdit = () => {
             <img src={cropped} />
           </section>
           <Desc>추가하고자 하는 색들을 골라주세요!</Desc>
-          <ColorItem>
-            <ColorContainer color="#000000" />
-          </ColorItem>
           <ButtonWrap>
             <Button onClick={onBack}>뒤로</Button>
             <Button onClick={onResult}>결과 보기</Button>
