@@ -5,9 +5,7 @@ const URL =
 
 export const combineColors = async (colors) => {
   try {
-    const rgb2Arr = colors.map(({ rgb: { r, g, b }, hex }) => [r, g, b]);
-    const sliced = [...rgb2Arr, "N", "N", "N", "N"].slice(0, 5);
-    console.log(sliced);
+    const sliced = [...colors, "N", "N", "N", "N"].slice(0, 5);
     const body = {
       model: "default",
       input: sliced,

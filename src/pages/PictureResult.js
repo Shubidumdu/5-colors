@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Color from '../components/color/Color';
-import Card from '../components/card/Card';
-import DeleteButton from '../components/button/DeleteButton';
-import { useSelector } from 'react-redux';
-import parseDataURL from '../util/parseBase64';
-import { analyzeImage } from '../api/etri';
-import CheckBox from '../components/checkbox/CheckBox';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Color from "../components/color/Color";
+import Card from "../components/card/Card";
+import DeleteButton from "../components/button/DeleteButton";
+import { useDispatch, useSelector } from "react-redux";
+import parseDataURL from "../util/parseBase64";
+import { analyzeImage } from "../api/etri";
+import CheckBox from "../components/checkbox/Checkbox";
+import { useHistory } from "react-router-dom";
+import { postColor } from "../redux/result";
+import parseRGB from "../util/parseRGB";
 
 const Container = styled.div``;
 
@@ -51,25 +53,33 @@ const ColorContainer = ({ color }) => {
 };
 
 const LABELS = {
-  coat: '외투',
-  dress: '드레스',
-  hat: '모자',
-  pants: '바지',
-  skirt: '스커트',
-  upcloth: '상의',
+  coat: "외투",
+  dress: "드레스",
+  hat: "모자",
+  pants: "바지",
+  skirt: "스커트",
+  upcloth: "상의",
 };
 
 const ColorEdit = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const onHelp = () => {};
   const onInfo = () => {};
   const onBack = () => {
     history.goBack();
   };
-  const onResult = async () => {};
   const result = useSelector((state) => state.result.picture);
-
   const [checkboxes, setCheckboxes] = useState({});
+  const onResult = async () => {
+    const colors = result.reduce((prev, { type, color }, idx) => {
+      const parsedColor = parseRGB(color);
+      if (checkboxes[type] === true) return [...prev, parsedColor];
+      return [...prev];
+    }, []);
+    dispatch(postColor(colors));
+    history.push("/result");
+  };
 
   return (
     <Container>
