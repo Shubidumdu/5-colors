@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import RoundButton from "../button/RoundButton";
-import Logo from "../image/Logo";
-import InfoModal from "./InfoModal";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import RoundButton from '../button/RoundButton';
+import Logo from '../image/Logo';
+import InfoModal from './InfoModal';
 
 const Container = styled.header`
   width: 100%;
@@ -38,10 +38,21 @@ const LogoTitle = styled.div`
 
 const ButtonWrap = styled.div``;
 
-const Header = ({ onInfo, onHelp }) => {
+const Header = () => {
+  const [info, setInfo] = useState(false);
+  const [help, setHelp] = useState(false);
+
+  const onInfo = () => {
+    setInfo((info) => !info);
+  };
+
+  const onHelp = () => {
+    setHelp((help) => !help);
+  };
+
   return (
     <Container>
-      <InfoModal visible={true} />
+      <InfoModal visible={info} onClose={onInfo} />
       <LogoContainer>
         <LogoWrap>
           <Logo />
