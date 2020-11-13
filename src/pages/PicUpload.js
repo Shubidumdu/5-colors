@@ -43,7 +43,7 @@ const CheckBoxContainer = styled.div``;
 
 const PicUpload = () => {
   const history = useHistory();
-  const image = useSelector((state) => state.image);
+  const image = useSelector((state) => state.image.blob);
   const dispatch = useDispatch();
   const onHelp = () => {};
   const onInfo = () => {};
@@ -63,6 +63,7 @@ const PicUpload = () => {
     history.goBack();
   };
   const onNext = () => {
+    if (!image) return;
     history.push("/crop");
   };
 

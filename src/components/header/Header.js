@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import RoundButton from '../button/RoundButton';
-import Logo from '../image/Logo';
+import React from "react";
+import styled from "styled-components";
+import RoundButton from "../button/RoundButton";
+import Logo from "../image/Logo";
+import InfoModal from "./InfoModal";
 
 const Container = styled.header`
   width: 100%;
@@ -40,6 +41,7 @@ const ButtonWrap = styled.div``;
 const Header = ({ onInfo, onHelp }) => {
   return (
     <Container>
+      <InfoModal visible={true} />
       <LogoContainer>
         <LogoWrap>
           <Logo />

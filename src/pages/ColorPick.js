@@ -9,6 +9,11 @@ import AddButton from "../components/button/AddButton";
 import ColorPicker from "../components/colorpicker/ColorPicker";
 import { useHistory } from "react-router-dom";
 import { combineColors } from "../api/colormind";
+import { useDispatch, useSelector } from "react-redux";
+import { postColor } from "../redux/result";
+import { addColor, removeColor } from "../redux/color";
+import rgbToArr from "../util/rgbToArr";
+import deparseRGB from "../util/deparseRGB";
 
 const Container = styled.div``;
 
@@ -43,24 +48,28 @@ const ButtonWrap = styled.div``;
 
 const ColorPick = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const colors = useSelector((state) => state.color);
+  const [color, setColor] = useState({
+    hex: "#000000",
+  });
   const onHelp = () => {};
   const onInfo = () => {};
   const onBack = () => {
     history.goBack();
   };
-  const onResult = async () => {
-    const result = await combineColors(colors);
-  };
-  const [colors, setColors] = useState([]);
-  const [color, setColor] = useState({
-    hex: "#000000",
-  });
   const onChange = (color, e) => {
     const { rgb, hex } = color;
     setColor({ rgb, hex });
   };
+
+  const onResult = async () => {
+    dispatch(postColor(colors));
+    history.push("/result");
+  };
   const onAdd = () => {
-    setColors((colors) => [...colors, color]);
+    const rgb = color.rgb;
+    dispatch(addColor(rgbToArr(rgb)));
   };
 
   return (
@@ -80,15 +89,13 @@ const ColorPick = () => {
           <ColorWrap>
             {colors.map((color, idx) => {
               const onDelete = () => {
-                setColors((colors) => {
-                  return colors.filter((color, _idx) => idx !== _idx);
-                });
+                dispatch(removeColor(idx));
               };
-
+              const deparsed = deparseRGB(color);
               return (
                 <ColorContainer>
                   <DeleteButton size="small" onClick={onDelete} />
-                  <Color color={color.hex} />
+                  <Color color={deparsed} />
                 </ColorContainer>
               );
             })}

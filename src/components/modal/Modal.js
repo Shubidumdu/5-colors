@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const ModalBody = styled.section``;
 
 const Modal = ({ visible, onClose, onSuccess, children, ...rest }) => {
   return (
-    <div class={`modal ${visible ? 'is-active' : ''}`}>
+    <div class={`modal ${visible ? "is-active" : ""}`}>
       <div class="modal-background"></div>
       <div class="modal-card" {...rest}>
         <header class="modal-card-head">

@@ -1,18 +1,18 @@
-import React, { useMemo, useState } from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Color from '../components/color/Color';
-import Card from '../components/card/Card';
-import Cropper from '../components/cropper/Cropper';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import loadImage from 'blueimp-load-image';
-import { cropImage, uploadImage } from '../redux/image';
-import { getCroppedImg } from '../components/cropper/util';
-import { analyzeImage } from '../api/etri';
-import parseDataURL from '../util/parseBase64';
-import { postPicture } from '../redux/result';
+import React, { useMemo, useState } from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Color from "../components/color/Color";
+import Card from "../components/card/Card";
+import Cropper from "../components/cropper/Cropper";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import loadImage from "blueimp-load-image";
+import { cropImage, uploadImage } from "../redux/image";
+import { getCroppedImg } from "../components/cropper/util";
+import { analyzeImage } from "../api/etri";
+import parseDataURL from "../util/parseBase64";
+import { postPicture } from "../redux/result";
 
 const Container = styled.div``;
 
@@ -64,9 +64,10 @@ const PicCrop = () => {
   };
   const croppedImg = useSelector((state) => state.image.cropped);
   const onNext = async () => {
+    if (/data:,/.test(croppedImg)) return;
     const { type, file } = parseDataURL(croppedImg);
     dispatch(postPicture(type, file));
-    history.push('/result/picture');
+    history.push("/result/picture");
   };
 
   return (
@@ -87,7 +88,9 @@ const PicCrop = () => {
           <Desc>사진을 적절히 잘라주세요.</Desc>
           <ButtonWrap className="buttons">
             <Button onClick={onBack}>뒤로</Button>
-            <Button onClick={onNext}>다음</Button>
+            <Button onClick={onNext} disabled={/data:,/.test(croppedImg)}>
+              다음
+            </Button>
           </ButtonWrap>
         </Content>
       </Card>

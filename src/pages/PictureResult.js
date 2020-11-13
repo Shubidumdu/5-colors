@@ -12,6 +12,7 @@ import CheckBox from "../components/checkbox/Checkbox";
 import { useHistory } from "react-router-dom";
 import { postColor } from "../redux/result";
 import parseRGB from "../util/parseRGB";
+import { setColors } from "../redux/color";
 
 const Container = styled.div``;
 
@@ -77,6 +78,7 @@ const ColorEdit = () => {
       if (checkboxes[type] === true) return [...prev, parsedColor];
       return [...prev];
     }, []);
+    dispatch(setColors(colors));
     dispatch(postColor(colors));
     history.push("/result");
   };
