@@ -10,13 +10,13 @@ const Content = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  width: 17rem;
-  border-radius: 1rem;
+  border-radius: 0;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
+  max-width: 420px;
 `;
 
 const Title = styled.div`
@@ -34,6 +34,7 @@ const Desc = styled.div`
 const DescContent = styled.div`
   font-size: 0.7rem;
   text-align: left;
+  padding: 0 2rem;
 `;
 
 const Developer = styled.div`
@@ -51,13 +52,20 @@ const SubHeader = styled.div`
   font-size: 0.8rem;
   font-weight: bold;
   padding-bottom: 0.2rem;
+  padding: 1rem;
 `;
 
 const Container = styled.div`
   padding: 1rem;
 `;
 
-const Info = ({ visible, onClose }) => {
+const LogoContainer = styled.div`
+  padding: 1rem;
+  width: 15rem;
+  margin: 0 auto;
+`;
+
+const InfoModal = ({ visible, onClose }) => {
   return (
     <div className={`modal ${visible ? 'is-active' : ''}`}>
       <div className="modal-background"></div>
@@ -65,9 +73,9 @@ const Info = ({ visible, onClose }) => {
         <Container className="section">
           <Title>오깔라</Title>
         </Container>
-        <Container>
+        <LogoContainer>
           <Logo />
-        </Container>
+        </LogoContainer>
         <Container>
           <Desc>옷 색깔 조합 추천 웹 앱</Desc>
           <Developer>
@@ -103,4 +111,4 @@ const Info = ({ visible, onClose }) => {
   );
 };
 
-export default Info;
+export default InfoModal;

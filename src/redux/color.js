@@ -1,7 +1,8 @@
-const ADD_COLOR = "color/ADD";
-const REMOVE_COLOR = "color/REMOVE";
-const CHANGE_COLOR = "color/CHANGE";
-const SET_COLORS = "color/SET";
+const ADD_COLOR = 'color/ADD';
+const REMOVE_COLOR = 'color/REMOVE';
+const CHANGE_COLOR = 'color/CHANGE';
+const SET_COLORS = 'color/SET';
+const RESET_COLORS = 'color/RESET';
 
 export const addColor = (color) => ({ type: ADD_COLOR, color });
 export const removeColor = (index) => ({ type: REMOVE_COLOR, index });
@@ -13,6 +14,9 @@ export const changeColor = (index, color) => ({
 export const setColors = (colors) => ({
   type: SET_COLORS,
   colors,
+});
+export const resetColors = () => ({
+  type: RESET_COLORS,
 });
 
 const initialState = [];
@@ -28,6 +32,8 @@ const color = (state = initialState, action) => {
       return newState;
     case SET_COLORS:
       return action.colors;
+    case RESET_COLORS:
+      return initialState;
     default:
       return state;
   }

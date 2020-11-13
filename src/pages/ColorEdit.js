@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Header from "../components/header/Header";
-import styled from "styled-components";
-import Button from "../components/button/Button";
-import Color from "../components/color/Color";
-import Card from "../components/card/Card";
-import DeleteButton from "../components/button/DeleteButton";
-import { useSelector } from "react-redux";
-import parseDataURL from "../util/parseBase64";
-import { analyzeImage } from "../api/etri";
+import React, { useState } from 'react';
+import Header from '../components/header/Header';
+import styled from 'styled-components';
+import Button from '../components/button/Button';
+import Color from '../components/color/Color';
+import Card from '../components/card/Card';
+import DeleteButton from '../components/button/DeleteButton';
+import { useSelector } from 'react-redux';
+import parseDataURL from '../util/parseBase64';
+import { analyzeImage } from '../api/etri';
 
 const Container = styled.div``;
 
@@ -37,21 +37,19 @@ const ColorContainer = ({ color }) => {
 
 const picResult = [
   {
-    type: "upcloth",
-    color: "(0, 0, 0)",
+    type: 'upcloth',
+    color: '(0, 0, 0)',
   },
 ];
 
 const ColorEdit = () => {
-  const onHelp = () => {};
-  const onInfo = () => {};
   const onBack = () => {};
   const onResult = async () => {};
   const cropped = useSelector((state) => state.image.cropped);
 
   return (
     <Container>
-      <Header onHelp={onHelp} onInfo={onInfo} />
+      <Header />
       <Card>
         <Content>
           <section className="section">

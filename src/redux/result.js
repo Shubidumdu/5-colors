@@ -5,6 +5,7 @@ const GET_LOADING = 'result/LOADING';
 const GET_ERROR = 'result/ERROR';
 const POST_PICTURE_SUCCESS = 'result/POST_PICTURE_SUCCESS';
 const POST_COLOR_SUCCESS = 'result/POST_COLOR_SUCCESS';
+const RESET_RESULT = 'result/RESET';
 
 export const postPicture = (type, base64) => async (dispatch) => {
   dispatch({ type: GET_LOADING });
@@ -25,6 +26,10 @@ export const postColor = (colors) => async (dispatch) => {
     dispatch({ type: GET_ERROR, error: err });
   }
 };
+
+export const resetResult = () => ({
+  type: RESET_RESULT,
+});
 
 const initialState = {
   loading: false,
@@ -58,6 +63,8 @@ const result = (state = initialState, action) => {
         loading: false,
         color: action.data,
       };
+    case RESET_RESULT:
+      return initialState;
     default:
       return state;
   }

@@ -1,18 +1,19 @@
-import React, { useMemo, useState } from "react";
-import Header from "../components/header/Header";
-import styled from "styled-components";
-import Button from "../components/button/Button";
-import Color from "../components/color/Color";
-import Card from "../components/card/Card";
-import Cropper from "../components/cropper/Cropper";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import loadImage from "blueimp-load-image";
-import { cropImage, uploadImage } from "../redux/image";
-import { getCroppedImg } from "../components/cropper/util";
-import { analyzeImage } from "../api/etri";
-import parseDataURL from "../util/parseBase64";
-import { postPicture } from "../redux/result";
+import React, { useMemo, useState } from 'react';
+import Header from '../components/header/Header';
+import styled from 'styled-components';
+import Button from '../components/button/Button';
+import Color from '../components/color/Color';
+import Card from '../components/card/Card';
+import Cropper from '../components/cropper/Cropper';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import loadImage from 'blueimp-load-image';
+import { cropImage, uploadImage } from '../redux/image';
+import { getCroppedImg } from '../components/cropper/util';
+import { analyzeImage } from '../api/etri';
+import parseDataURL from '../util/parseBase64';
+import { postPicture } from '../redux/result';
+import { AiOutlineWarning } from 'react-icons/ai';
 
 const Container = styled.div``;
 
@@ -28,6 +29,10 @@ const Desc = styled.div`
   margin-bottom: 3rem;
   text-align: center;
   font-size: 1rem;
+`;
+
+const DescSub = styled.div`
+  font-size: 0.8rem;
 `;
 
 const ButtonWrap = styled.div`
@@ -52,8 +57,6 @@ const PicCrop = () => {
   const blob = useSelector((state) => state.image.blob);
   const [imgRef, setImgRef] = useState();
   const imageURL = useMemo(() => URL.createObjectURL(blob), [blob]);
-  const onHelp = () => {};
-  const onInfo = () => {};
   const onBack = () => {
     history.goBack();
   };
@@ -67,12 +70,12 @@ const PicCrop = () => {
     if (/data:,/.test(croppedImg)) return;
     const { type, file } = parseDataURL(croppedImg);
     dispatch(postPicture(type, file));
-    history.push("/result/picture");
+    history.push('/result/picture');
   };
 
   return (
     <Container>
-      <Header onHelp={onHelp} onInfo={onInfo} />
+      <Header />
       <Card>
         <Content>
           <div className="section">
@@ -84,11 +87,24 @@ const PicCrop = () => {
               }}
             />
           </div>
-          <img src={croppedImg} />
-          <Desc>사진을 적절히 잘라주세요.</Desc>
+          <Desc>
+            사진을 적절히 잘라주세요.
+            <DescSub>
+              <AiOutlineWarning size="1rem" />
+              전신이 나오도록 해주세요.
+            </DescSub>
+            <DescSub>
+              <AiOutlineWarning size="1rem" />
+              여러 인물이 겹치지 않도록 해주세요.
+            </DescSub>
+          </Desc>
           <ButtonWrap className="buttons">
             <Button onClick={onBack}>뒤로</Button>
-            <Button onClick={onNext} disabled={/data:,/.test(croppedImg)}>
+            <Button
+              primary
+              onClick={onNext}
+              disabled={/data:,/.test(croppedImg)}
+            >
               다음
             </Button>
           </ButtonWrap>

@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import Header from "../components/header/Header";
-import styled from "styled-components";
-import Button from "../components/button/Button";
-import Color from "../components/color/Color";
-import Card from "../components/card/Card";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { uploadImage } from "../redux/image";
-import loadImage from "blueimp-load-image";
+import React, { useState } from 'react';
+import Header from '../components/header/Header';
+import styled from 'styled-components';
+import Button from '../components/button/Button';
+import Color from '../components/color/Color';
+import Card from '../components/card/Card';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { uploadImage } from '../redux/image';
+import loadImage from 'blueimp-load-image';
+import { FaFileUpload } from 'react-icons/fa';
 
 const Container = styled.div``;
 
-const Content = styled.div``;
+const Content = styled.div`
+  max-width: 375px;
+  margin: 0 auto;
+`;
 
 const Picture = styled.img`
   width: 100%;
@@ -23,6 +27,10 @@ const Desc = styled.div`
   margin-bottom: 3rem;
   text-align: center;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const ButtonWrap = styled.div`
@@ -37,6 +45,10 @@ const FileInput = styled.input`
   display: none;
 `;
 
+const IconWrap = styled.div`
+  margin-top: 2rem;
+`;
+
 const CheckBoxSet = styled.div``;
 
 const CheckBoxContainer = styled.div``;
@@ -45,8 +57,6 @@ const PicUpload = () => {
   const history = useHistory();
   const image = useSelector((state) => state.image.blob);
   const dispatch = useDispatch();
-  const onHelp = () => {};
-  const onInfo = () => {};
   const onFileUpload = (e) => {
     const file = e.target.files[0];
     loadImage(
@@ -54,9 +64,9 @@ const PicUpload = () => {
       (img) => {
         img.toBlob((blob) => {
           dispatch(uploadImage(blob));
-        }, "image/png");
+        }, 'image/png');
       },
-      { orientation: true, canvas: true }
+      { orientation: true, canvas: true },
     );
   };
   const onBack = () => {
@@ -64,15 +74,20 @@ const PicUpload = () => {
   };
   const onNext = () => {
     if (!image) return;
-    history.push("/crop");
+    history.push('/crop');
   };
 
   return (
     <Container>
-      <Header onHelp={onHelp} onInfo={onInfo} />
+      <Header />
       <Card>
         <Content>
-          <Desc>사진을 업로드해 주세요.</Desc>
+          <Desc className="section">
+            사진을 업로드해 주세요.
+            <IconWrap>
+              <FaFileUpload size="5rem" />
+            </IconWrap>
+          </Desc>
           <ButtonWrap className="buttons">
             <label htmlFor="upload">
               <Button>업로드</Button>
@@ -86,7 +101,7 @@ const PicUpload = () => {
           </ButtonWrap>
           <ButtonWrap className="buttons">
             <Button onClick={onBack}>뒤로</Button>
-            <Button onClick={onNext} disabled={!image}>
+            <Button onClick={onNext} primary={image} disabled={!image}>
               다음
             </Button>
           </ButtonWrap>

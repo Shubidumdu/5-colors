@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const Container = styled.main`
   padding-top: 6rem;
+  max-width: 420px;
+  margin: 0 auto;
 `;
 
 const Inner = styled.div`

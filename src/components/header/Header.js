@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import RoundButton from '../button/RoundButton';
 import Logo from '../image/Logo';
-import InfoModal from './InfoModal';
+import InfoModal from '../info/InfoModal';
+import HelpModal from '../help/HelpModal';
 
 const Container = styled.header`
   width: 100%;
@@ -53,6 +54,7 @@ const Header = () => {
   return (
     <Container>
       <InfoModal visible={info} onClose={onInfo} />
+      <HelpModal visible={help} onClose={onHelp} />
       <LogoContainer>
         <LogoWrap>
           <Logo />
