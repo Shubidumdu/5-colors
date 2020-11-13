@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uploadImage } from '../redux/image';
 import loadImage from 'blueimp-load-image';
 import { FaFileUpload } from 'react-icons/fa';
+import { MdCheckCircle } from 'react-icons/md';
 import { finishLoading, getLoading } from '../redux/result';
 
 const Container = styled.div``;
@@ -76,9 +77,13 @@ const PicUpload = () => {
       <Card>
         <Content>
           <Desc className="section">
-            사진을 업로드해 주세요.
+            {image ? '업로드를 완료했습니다.' : '사진을 업로드해 주세요.'}
             <IconWrap>
-              <FaFileUpload size="5rem" />
+              {image ? (
+                <MdCheckCircle size="5rem" />
+              ) : (
+                <FaFileUpload size="5rem" />
+              )}
             </IconWrap>
           </Desc>
           <ButtonWrap className="buttons">
