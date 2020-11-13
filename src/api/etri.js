@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-const URL = "http://aiopen.etri.re.kr:8000/HumanParsing";
+const URL =
+  'https://k8am1bcleh.execute-api.ap-northeast-2.amazonaws.com/2020-11-14/parseHuman';
 
-const CATEGORIES = ["coat", "dress", "hat", "pants", "skirt", "upcloth"];
+const CATEGORIES = ['coat', 'dress', 'hat', 'pants', 'skirt', 'upcloth'];
 
 export const analyzeImage = async ({ type, file }) => {
   try {
@@ -10,7 +11,7 @@ export const analyzeImage = async ({ type, file }) => {
     const res = await axios.post(URL, {
       access_key: ACCESS_KEY,
       argument: {
-        type: "png",
+        type: 'png',
         file,
       },
     });
@@ -18,7 +19,7 @@ export const analyzeImage = async ({ type, file }) => {
     const parsed = JSON.parse(result);
     const person = parsed.person_1;
     const colors = CATEGORIES.reduce((prev, val, idx) => {
-      if (person[`${val} mask`] !== "None")
+      if (person[`${val} mask`] !== 'None')
         return [
           ...prev,
           {
@@ -30,6 +31,7 @@ export const analyzeImage = async ({ type, file }) => {
     }, []);
     return colors;
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };

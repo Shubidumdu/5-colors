@@ -3,9 +3,13 @@ import { analyzeImage } from '../api/etri';
 
 const GET_LOADING = 'result/LOADING';
 const GET_ERROR = 'result/ERROR';
+const FINISH_LOADING = 'result/FINISH_LOADING';
 const POST_PICTURE_SUCCESS = 'result/POST_PICTURE_SUCCESS';
 const POST_COLOR_SUCCESS = 'result/POST_COLOR_SUCCESS';
 const RESET_RESULT = 'result/RESET';
+
+export const getLoading = () => ({ type: GET_LOADING });
+export const finishLoading = () => ({ type: FINISH_LOADING });
 
 export const postPicture = (type, base64) => async (dispatch) => {
   dispatch({ type: GET_LOADING });
@@ -44,6 +48,11 @@ const result = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case FINISH_LOADING:
+      return {
+        ...state,
+        loading: false,
       };
     case GET_ERROR:
       return {

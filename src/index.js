@@ -15,7 +15,7 @@ import * as serviceWorker from './serviceWorker';
 
 const store =
   process.env.NODE_ENV === 'production'
-    ? createStore(rootReducer)
+    ? createStore(rootReducer, applyMiddleware(ReduxThunk))
     : createStore(rootReducer, applyMiddleware(ReduxThunk, logger));
 
 ReactDOM.render(

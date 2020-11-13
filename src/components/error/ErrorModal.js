@@ -14,6 +14,7 @@ const Content = styled.div`
   font-size: 1rem;
   text-align: center;
   color: #fff;
+  overflow: hidden;
 `;
 
 const Desc = styled.div`

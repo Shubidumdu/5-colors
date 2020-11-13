@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uploadImage } from '../redux/image';
 import loadImage from 'blueimp-load-image';
 import { FaFileUpload } from 'react-icons/fa';
+import { finishLoading, getLoading } from '../redux/result';
 
 const Container = styled.div``;
 
@@ -48,12 +49,14 @@ const PicUpload = () => {
   const image = useSelector((state) => state.image.blob);
   const dispatch = useDispatch();
   const onFileUpload = (e) => {
+    dispatch(getLoading());
     const file = e.target.files[0];
     loadImage(
       file,
       (img) => {
         img.toBlob((blob) => {
           dispatch(uploadImage(blob));
+          dispatch(finishLoading());
         }, 'image/png');
       },
       { orientation: true, canvas: true },
@@ -87,6 +90,7 @@ const PicUpload = () => {
               type="file"
               accept="image/png, image/jpeg"
               onChange={onFileUpload}
+              capture
             />
           </ButtonWrap>
           <ButtonWrap className="buttons">
