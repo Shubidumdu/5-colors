@@ -1,6 +1,7 @@
 const UPLOAD_IMAGE = 'image/UPLOAD';
 const CROP_IMAGE = 'image/CROP';
 const RESET_IMAGE = 'image/RESET';
+const RESET_CROP_IMAGE = 'image/RESET_CROP';
 
 export const uploadImage = (blob) => ({ type: UPLOAD_IMAGE, blob });
 export const cropImage = (base64) => ({
@@ -9,6 +10,9 @@ export const cropImage = (base64) => ({
 });
 export const resetImage = () => ({
   type: RESET_IMAGE,
+});
+export const resetCropImage = () => ({
+  type: RESET_CROP_IMAGE,
 });
 
 const initialState = {
@@ -30,6 +34,11 @@ const image = (state = initialState, action) => {
       };
     case RESET_IMAGE:
       return initialState;
+    case RESET_CROP_IMAGE:
+      return {
+        ...state,
+        cropped: null,
+      };
     default:
       return state;
   }

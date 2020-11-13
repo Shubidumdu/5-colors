@@ -8,6 +8,12 @@
   font-style: normal;
 }
 
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 html,
 body,
 #root,

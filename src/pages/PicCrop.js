@@ -8,7 +8,7 @@ import Cropper from '../components/cropper/Cropper';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import loadImage from 'blueimp-load-image';
-import { cropImage, uploadImage } from '../redux/image';
+import { cropImage, resetCropImage } from '../redux/image';
 import { getCroppedImg } from '../components/cropper/util';
 import { analyzeImage } from '../api/etri';
 import parseDataURL from '../util/parseBase64';
@@ -59,6 +59,7 @@ const PicCrop = () => {
   const imageURL = useMemo(() => URL.createObjectURL(blob), [blob]);
   const onBack = () => {
     history.goBack();
+    dispatch(resetCropImage());
   };
   const onCrop = async (crop, percentCrop) => {
     if (!imgRef) return;
@@ -67,7 +68,7 @@ const PicCrop = () => {
   };
   const croppedImg = useSelector((state) => state.image.cropped);
   const onNext = async () => {
-    if (/data:,/.test(croppedImg)) return;
+    if (!croppedImg) return;
     const { type, file } = parseDataURL(croppedImg);
     dispatch(postPicture(type, file));
     history.push('/result/picture');
@@ -101,9 +102,9 @@ const PicCrop = () => {
           <ButtonWrap className="buttons">
             <Button onClick={onBack}>뒤로</Button>
             <Button
-              primary
+              primary={croppedImg}
               onClick={onNext}
-              disabled={/data:,/.test(croppedImg)}
+              disabled={!croppedImg}
             >
               다음
             </Button>
