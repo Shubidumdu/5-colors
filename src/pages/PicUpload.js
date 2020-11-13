@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
 import Button from '../components/button/Button';
-import Color from '../components/color/Color';
 import Card from '../components/card/Card';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +14,6 @@ const Container = styled.div``;
 const Content = styled.div`
   max-width: 375px;
   margin: 0 auto;
-`;
-
-const Picture = styled.img`
-  width: 100%;
-  border-radius: 1rem;
 `;
 
 const Desc = styled.div`
@@ -48,10 +42,6 @@ const FileInput = styled.input`
 const IconWrap = styled.div`
   margin-top: 2rem;
 `;
-
-const CheckBoxSet = styled.div``;
-
-const CheckBoxContainer = styled.div``;
 
 const PicUpload = () => {
   const history = useHistory();

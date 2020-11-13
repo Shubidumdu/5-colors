@@ -2,15 +2,12 @@ import React, { useMemo, useState } from 'react';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
 import Button from '../components/button/Button';
-import Color from '../components/color/Color';
 import Card from '../components/card/Card';
 import Cropper from '../components/cropper/Cropper';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import loadImage from 'blueimp-load-image';
 import { cropImage, resetCropImage } from '../redux/image';
 import { getCroppedImg } from '../components/cropper/util';
-import { analyzeImage } from '../api/etri';
 import parseDataURL from '../util/parseBase64';
 import { postPicture } from '../redux/result';
 import { AiOutlineWarning } from 'react-icons/ai';
@@ -18,11 +15,6 @@ import { AiOutlineWarning } from 'react-icons/ai';
 const Container = styled.div``;
 
 const Content = styled.div``;
-
-const Picture = styled.img`
-  width: 100%;
-  border-radius: 1rem;
-`;
 
 const Desc = styled.div`
   width: 100%;
@@ -42,14 +34,6 @@ const ButtonWrap = styled.div`
     padding-bottom: 1rem;
   }
 `;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const CheckBoxSet = styled.div``;
-
-const CheckBoxContainer = styled.div``;
 
 const PicCrop = () => {
   const history = useHistory();

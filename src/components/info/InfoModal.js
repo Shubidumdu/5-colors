@@ -1,10 +1,6 @@
 import React from 'react';
-import { css } from '@emotion/core';
-import BarLoader from 'react-spinners/BarLoader';
 import styled from 'styled-components';
 import Logo from '../image/Logo';
-import { getByRole } from '@testing-library/react';
-import { setColors } from '../../redux/color';
 
 const Content = styled.div`
   background: #fff;

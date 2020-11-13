@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
 import Button from '../components/button/Button';
@@ -10,7 +10,6 @@ import { useHistory } from 'react-router-dom';
 import { postColor } from '../redux/result';
 import parseRGB from '../util/parseRGB';
 import { setColors } from '../redux/color';
-import ErrorModal from '../components/error/ErrorModal';
 
 const Container = styled.div``;
 
@@ -27,8 +26,6 @@ const ClothType = styled.div`
   font-weight: bold;
 `;
 
-const ColorItem = styled.div``;
-
 const ColorWrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -41,22 +38,11 @@ const ColorWrap = styled.div`
   }
 `;
 
-const ColorCode = styled.span``;
-
 const ButtonWrap = styled.div`
   padding-bottom: 1rem;
 `;
 
 const ResultWrap = styled.div``;
-
-const ColorContainer = ({ color }) => {
-  return (
-    <ColorWrap>
-      <Color color={color} />
-      <ColorCode>{color}</ColorCode>
-    </ColorWrap>
-  );
-};
 
 const LABELS = {
   coat: '외투',

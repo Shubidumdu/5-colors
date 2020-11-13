@@ -1,6 +1,4 @@
 import React from 'react';
-import { css } from '@emotion/core';
-import BarLoader from 'react-spinners/BarLoader';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdError } from 'react-icons/md';

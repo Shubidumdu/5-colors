@@ -1,6 +1,6 @@
 const parseDataURL = (dataURL) => {
-  const [data, base64] = dataURL.split(",");
-  const imageType = "png";
+  const base64 = dataURL.split(',')[1];
+  const imageType = 'png';
 
   return {
     type: imageType,

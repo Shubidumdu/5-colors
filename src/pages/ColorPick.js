@@ -5,10 +5,8 @@ import Button from '../components/button/Button';
 import Color from '../components/color/Color';
 import Card from '../components/card/Card';
 import DeleteButton from '../components/button/DeleteButton';
-import AddButton from '../components/button/AddButton';
 import ColorPicker from '../components/colorpicker/ColorPicker';
 import { useHistory } from 'react-router-dom';
-import { combineColors } from '../api/colormind';
 import { useDispatch, useSelector } from 'react-redux';
 import { postColor } from '../redux/result';
 import { addColor, removeColor } from '../redux/color';
@@ -24,8 +22,6 @@ const Desc = styled.div`
   font-size: 0.7rem;
   padding: 2rem;
 `;
-
-const ColorItem = styled.div``;
 
 const ColorWrap = styled.div`
   display: flex;
@@ -43,8 +39,6 @@ const ColorContainer = styled.div`
     top: -4px;
   }
 `;
-
-const ColorCode = styled.span``;
 
 const ButtonWrap = styled.div`
   border-bottom: 1px solid lightgrey;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from '@emotion/core';
 import BarLoader from 'react-spinners/BarLoader';
 import styled from 'styled-components';
 
