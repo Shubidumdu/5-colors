@@ -1,12 +1,12 @@
-import { combineColors } from '../api/colormind';
-import { analyzeImage } from '../api/etri';
+import { combineColors } from "../api/colormind";
+import { analyzeImage } from "../api/etri";
 
-const GET_LOADING = 'result/LOADING';
-const GET_ERROR = 'result/ERROR';
-const FINISH_LOADING = 'result/FINISH_LOADING';
-const POST_PICTURE_SUCCESS = 'result/POST_PICTURE_SUCCESS';
-const POST_COLOR_SUCCESS = 'result/POST_COLOR_SUCCESS';
-const RESET_RESULT = 'result/RESET';
+const GET_LOADING = "result/LOADING";
+const GET_ERROR = "result/ERROR";
+const FINISH_LOADING = "result/FINISH_LOADING";
+const POST_PICTURE_SUCCESS = "result/POST_PICTURE_SUCCESS";
+const POST_COLOR_SUCCESS = "result/POST_COLOR_SUCCESS";
+const RESET_RESULT = "result/RESET";
 
 export const getLoading = () => ({ type: GET_LOADING });
 export const finishLoading = () => ({ type: FINISH_LOADING });

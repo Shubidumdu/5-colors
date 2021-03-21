@@ -8,9 +8,6 @@ const Pop = styled.div`
 `;
 
 const PopContainer = styled.div`
-  /* width: 12rem; */
-  /* background: #fff;
-  box-shadow: 0px 1px 6px lightgrey; */
   z-index: 2;
 `;
 
@@ -28,7 +25,7 @@ const Arrow = styled.div`
   border: 1px solid black;
 `;
 
-const ColorPicker = ({}) => {
+const ColorPopPicker = () => {
   const [color, setColor] = useState("#000");
   const onChange = (color, e) => {
     const hex = color.hex;
@@ -68,4 +65,4 @@ const ColorPicker = ({}) => {
   );
 };
 
-export default ColorPicker;
+export default ColorPopPicker;

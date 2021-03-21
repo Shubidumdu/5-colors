@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Color from '../components/color/Color';
-import Card from '../components/card/Card';
-import DeleteButton from '../components/button/DeleteButton';
-import ColorPicker from '../components/colorpicker/ColorPicker';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { postColor } from '../redux/result';
-import { addColor, removeColor } from '../redux/color';
-import rgbToArr from '../util/rgbToArr';
-import deparseRGB from '../util/deparseRGB';
-
-const Container = styled.div``;
-
-const Content = styled.div``;
+import React, { useState } from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Color from "../components/color/Color";
+import Card from "../components/card/Card";
+import DeleteButton from "../components/button/DeleteButton";
+import ColorPicker from "../components/colorpicker/ColorPicker";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postColor } from "../redux/result";
+import { addColor, removeColor } from "../redux/color";
+import { convertRgbToArr, stringifyRGB } from "../util";
 
 const Desc = styled.div`
   text-align: center;
@@ -50,7 +45,7 @@ const ColorPick = () => {
   const dispatch = useDispatch();
   const colors = useSelector((state) => state.color);
   const [color, setColor] = useState({
-    hex: '#000000',
+    hex: "#000000",
   });
   const onBack = () => {
     history.goBack();
@@ -62,19 +57,19 @@ const ColorPick = () => {
 
   const onResult = async () => {
     dispatch(postColor(colors));
-    history.push('/result');
+    history.push("/result");
   };
   const onAdd = () => {
     if (colors.length > 3) return;
     const rgb = color.rgb;
-    dispatch(addColor(rgbToArr(rgb)));
+    dispatch(addColor(convertRgbToArr(rgb)));
   };
 
   return (
-    <Container>
+    <div>
       <Header />
       <Card>
-        <Content>
+        <div>
           <Desc>
             입고자 하는 색들을 추가해주세요! <br /> (최대 4개)
           </Desc>
@@ -91,18 +86,18 @@ const ColorPick = () => {
             </Button>
           </ButtonWrap>
           <Desc>
-            {colors.length > 0 && '아래의 색들로 옷 조합을 구성합니다.'}
+            {colors.length > 0 && "아래의 색들로 옷 조합을 구성합니다."}
           </Desc>
           <ColorWrap>
             {colors.map((color, idx) => {
               const onDelete = () => {
                 dispatch(removeColor(idx));
               };
-              const deparsed = deparseRGB(color);
+              const rgb = stringifyRGB(color);
               return (
                 <ColorContainer>
                   <DeleteButton size="small" onClick={onDelete} />
-                  <Color color={deparsed} />
+                  <Color color={rgb} />
                 </ColorContainer>
               );
             })}
@@ -117,9 +112,9 @@ const ColorPick = () => {
               결과 보기
             </Button>
           </ButtonWrap>
-        </Content>
+        </div>
       </Card>
-    </Container>
+    </div>
   );
 };
 

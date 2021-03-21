@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Logo from '../image/Logo';
+import React from "react";
+import styled from "styled-components";
+import Logo from "../image/Logo";
 
 const Content = styled.div`
   background: #fff;
@@ -63,7 +63,7 @@ const LogoContainer = styled.div`
 
 const InfoModal = ({ visible, onClose }) => {
   return (
-    <div className={`modal ${visible ? 'is-active' : ''}`}>
+    <div className={`modal ${visible ? "is-active" : ""}`}>
       <div className="modal-background"></div>
       <Content className="modal-content">
         <Container className="section">
@@ -100,7 +100,7 @@ const InfoModal = ({ visible, onClose }) => {
       </Content>
       <button
         onClick={onClose}
-        class="modal-close is-large"
+        className="modal-close is-large"
         aria-label="close"
       />
     </div>

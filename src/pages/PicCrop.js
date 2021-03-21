@@ -1,20 +1,16 @@
-import React, { useMemo, useState } from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Card from '../components/card/Card';
-import Cropper from '../components/cropper/Cropper';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { cropImage, resetCropImage } from '../redux/image';
-import { getCroppedImg } from '../components/cropper/util';
-import parseDataURL from '../util/parseBase64';
-import { postPicture } from '../redux/result';
-import { AiOutlineWarning } from 'react-icons/ai';
-
-const Container = styled.div``;
-
-const Content = styled.div``;
+import React, { useMemo, useState } from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Card from "../components/card/Card";
+import Cropper from "../components/cropper/Cropper";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { cropImage, resetCropImage } from "../redux/image";
+import { getCroppedImg } from "../components/cropper/util";
+import { postPicture } from "../redux/result";
+import { AiOutlineWarning } from "react-icons/ai";
+import { parseDataURL } from "../util";
 
 const Desc = styled.div`
   width: 100%;
@@ -45,7 +41,7 @@ const PicCrop = () => {
     history.goBack();
     dispatch(resetCropImage());
   };
-  const onCrop = async (crop, percentCrop) => {
+  const onCrop = async (crop) => {
     if (!imgRef) return;
     const cropped = await getCroppedImg(imgRef, crop);
     dispatch(cropImage(cropped));
@@ -55,14 +51,14 @@ const PicCrop = () => {
     if (!croppedImg) return;
     const { type, file } = parseDataURL(croppedImg);
     dispatch(postPicture(type, file));
-    history.push('/result/picture');
+    history.push("/result/picture");
   };
 
   return (
-    <Container>
+    <div>
       <Header />
       <Card>
-        <Content>
+        <div>
           <div className="section">
             <Cropper
               onCrop={onCrop}
@@ -93,9 +89,9 @@ const PicCrop = () => {
               다음
             </Button>
           </ButtonWrap>
-        </Content>
+        </div>
       </Card>
-    </Container>
+    </div>
   );
 };
 

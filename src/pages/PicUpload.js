@@ -1,17 +1,15 @@
-import React from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Card from '../components/card/Card';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { uploadImage } from '../redux/image';
-import loadImage from 'blueimp-load-image';
-import { FaFileUpload } from 'react-icons/fa';
-import { MdCheckCircle } from 'react-icons/md';
-import { finishLoading, getLoading } from '../redux/result';
-
-const Container = styled.div``;
+import React from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Card from "../components/card/Card";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadImage } from "../redux/image";
+import loadImage from "blueimp-load-image";
+import { FaFileUpload } from "react-icons/fa";
+import { MdCheckCircle } from "react-icons/md";
+import { finishLoading, getLoading } from "../redux/result";
 
 const Content = styled.div`
   max-width: 375px;
@@ -58,9 +56,9 @@ const PicUpload = () => {
         img.toBlob((blob) => {
           dispatch(uploadImage(blob));
           dispatch(finishLoading());
-        }, 'image/png');
+        }, "image/png");
       },
-      { orientation: true, canvas: true },
+      { orientation: true, canvas: true }
     );
   };
   const onBack = () => {
@@ -68,16 +66,16 @@ const PicUpload = () => {
   };
   const onNext = () => {
     if (!image) return;
-    history.push('/crop');
+    history.push("/crop");
   };
 
   return (
-    <Container>
+    <div>
       <Header />
       <Card>
         <Content>
           <Desc className="section">
-            {image ? '업로드를 완료했습니다.' : '사진을 업로드해 주세요.'}
+            {image ? "업로드를 완료했습니다." : "사진을 업로드해 주세요."}
             <IconWrap>
               {image ? (
                 <MdCheckCircle size="5rem" />
@@ -106,7 +104,7 @@ const PicUpload = () => {
           </ButtonWrap>
         </Content>
       </Card>
-    </Container>
+    </div>
   );
 };
 

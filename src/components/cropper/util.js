@@ -1,5 +1,3 @@
-import loadImage from "blueimp-load-image";
-
 export const getCroppedImg = async (image, crop) => {
   const canvas = document.createElement("canvas");
   const scaleX = image.naturalWidth / image.width;

@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { MdError } from 'react-icons/md';
-import Button from '../button/Button';
-import { useHistory } from 'react-router-dom';
-import { resetResult } from '../../redux/result';
+import React from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { MdError } from "react-icons/md";
+import Button from "../button/Button";
+import { useHistory } from "react-router-dom";
+import { resetResult } from "../../redux/result";
 
 const Content = styled.div`
   display: flex;
@@ -26,11 +26,11 @@ const ErrorModal = ({ visible, children }) => {
   const dispatch = useDispatch();
   const onMain = () => {
     dispatch(resetResult());
-    history.replace('/');
+    history.replace("/");
   };
 
   return (
-    <div className={`modal ${visible ? 'is-active' : ''}`}>
+    <div className={`modal ${visible ? "is-active" : ""}`}>
       <div className="modal-background"></div>
       <Content className="modal-content">
         <MdError color="#fff" size="4rem" />

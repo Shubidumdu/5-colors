@@ -1,19 +1,19 @@
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../__testUtils__';
-import React from 'react';
-import Checkbox from './CheckBox';
+import userEvent from "@testing-library/user-event";
+import { render, screen } from "../../__testUtils__";
+import React from "react";
+import CheckBox from "./CheckBox";
 
-describe('Checkbox Component', () => {
+describe("CheckBox Component", () => {
   test(`should shows properly`, () => {
-    render(<Checkbox>테스트</Checkbox>);
-    screen.getByRole('checkbox');
+    render(<CheckBox>테스트</CheckBox>);
+    screen.getByRole("checkbox");
   });
 
   test(`should call the function on Click`, () => {
     const onClick = jest.fn();
-    render(<Checkbox onClick={onClick}>테스트</Checkbox>);
-    const checkbox = screen.getByRole('checkbox');
-    userEvent.click(checkbox);
+    render(<CheckBox onClick={onClick}>테스트</CheckBox>);
+    const checkBox = screen.getByRole("checkbox");
+    userEvent.click(checkBox);
     expect(onClick).toBeCalled();
   });
 });

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import 'react-image-crop/dist/ReactCrop.css';
-import ReactCrop from 'react-image-crop';
+import React, { useState } from "react";
+import ReactCrop from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 
 const Cropper = ({ src, onCrop, ...rest }) => {
   const [crop, setCrop] = useState({
-    unit: '%',
+    unit: "%",
     aspect: 9 / 16,
   });
 

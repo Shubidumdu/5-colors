@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Content = styled.div`
   background: #fff;
@@ -21,28 +21,6 @@ const Title = styled.div`
   font-family: BMJUA;
 `;
 
-const Desc = styled.div`
-  text-align: center;
-  font-size: 1rem;
-  word-break: keep-all;
-`;
-
-const DescContent = styled.div`
-  font-size: 0.7rem;
-  text-align: left;
-  padding: 0 2rem;
-`;
-
-const Developer = styled.div`
-  text-align: center;
-  font-size: 0.8rem;
-  padding: 1rem;
-
-  & > span {
-    font-weight: bold;
-  }
-`;
-
 const SubHeader = styled.div`
   text-align: center;
   font-size: 0.8rem;
@@ -61,15 +39,9 @@ const Container = styled.div`
   }
 `;
 
-const LogoContainer = styled.div`
-  padding: 1rem;
-  width: 15rem;
-  margin: 0 auto;
-`;
-
 const HelpModal = ({ visible, onClose }) => {
   return (
-    <div className={`modal ${visible ? 'is-active' : ''}`}>
+    <div className={`modal ${visible ? "is-active" : ""}`}>
       <div className="modal-background"></div>
       <Content className="modal-content">
         <Container className="section">
@@ -116,7 +88,7 @@ const HelpModal = ({ visible, onClose }) => {
       </Content>
       <button
         onClick={onClose}
-        class="modal-close is-large"
+        className="modal-close is-large"
         aria-label="close"
       />
     </div>

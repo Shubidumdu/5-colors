@@ -1,16 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Color from './Color';
-
-const Container = styled.div``;
+import React from "react";
+import Color from "./Color";
 
 const ColorSet = ({ colors }) => {
   return (
-    <Container data-testid="color-set">
+    <div data-testid="color-set">
       {colors.map((color, idx) => (
         <Color key={`${color}-${idx}`} color={color} />
       ))}
-    </Container>
+    </div>
   );
 };
 

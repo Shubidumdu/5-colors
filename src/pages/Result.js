@@ -1,19 +1,15 @@
-import React from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Color from '../components/color/Color';
-import Card from '../components/card/Card';
-import { useDispatch, useSelector } from 'react-redux';
-import deparseRGB from '../util/deparseRGB';
-import { postColor, resetResult } from '../redux/result';
-import { useHistory } from 'react-router-dom';
-import { resetColors } from '../redux/color';
-import { resetImage } from '../redux/image';
-
-const Container = styled.div``;
-
-const Content = styled.div``;
+import React from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Color from "../components/color/Color";
+import Card from "../components/card/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { postColor, resetResult } from "../redux/result";
+import { useHistory } from "react-router-dom";
+import { resetColors } from "../redux/color";
+import { resetImage } from "../redux/image";
+import { stringifyRGB } from "../util";
 
 const Head = styled.div`
   text-align: center;
@@ -58,14 +54,14 @@ const Result = () => {
     dispatch(resetColors());
     dispatch(resetImage());
     dispatch(resetResult());
-    history.push('/');
+    history.push("/");
   };
 
   return (
-    <Container>
+    <div>
       <Header />
       <Card>
-        <Content>
+        <div>
           <Head className="">결과</Head>
           <Desc>
             이런 색 조합은 어떤가요?? <br />
@@ -73,8 +69,8 @@ const Result = () => {
           </Desc>
           <ResultWrap className="section">
             {result.map((color) => {
-              const deparsed = deparseRGB(color);
-              return <Color color={deparsed} />;
+              const rgb = stringifyRGB(color);
+              return <Color color={rgb} />;
             })}
           </ResultWrap>
           <Desc>재조합으로 다른 결과를 얻을 수 있습니다.</Desc>
@@ -84,9 +80,9 @@ const Result = () => {
               재조합
             </Button>
           </ButtonWrap>
-        </Content>
+        </div>
       </Card>
-    </Container>
+    </div>
   );
 };
 

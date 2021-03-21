@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
-import Header from '../components/header/Header';
-import styled from 'styled-components';
-import Button from '../components/button/Button';
-import Color from '../components/color/Color';
-import Card from '../components/card/Card';
-import { useDispatch, useSelector } from 'react-redux';
-import CheckBox from '../components/checkbox/CheckBox';
-import { useHistory } from 'react-router-dom';
-import { postColor } from '../redux/result';
-import parseRGB from '../util/parseRGB';
-import { setColors } from '../redux/color';
-
-const Container = styled.div``;
-
-const Content = styled.div``;
+import React, { useState } from "react";
+import Header from "../components/header/Header";
+import styled from "styled-components";
+import Button from "../components/button/Button";
+import Color from "../components/color/Color";
+import Card from "../components/card/Card";
+import { useDispatch, useSelector } from "react-redux";
+import CheckBox from "../components/checkbox/CheckBox";
+import { useHistory } from "react-router-dom";
+import { postColor } from "../redux/result";
+import { setColors } from "../redux/color";
+import { parseRGB } from "../util";
 
 const Desc = styled.div`
   text-align: center;
@@ -45,12 +41,12 @@ const ButtonWrap = styled.div`
 const ResultWrap = styled.div``;
 
 const LABELS = {
-  coat: '외투',
-  dress: '드레스',
-  hat: '모자',
-  pants: '바지',
-  skirt: '스커트',
-  upcloth: '상의',
+  coat: "외투",
+  dress: "드레스",
+  hat: "모자",
+  pants: "바지",
+  skirt: "스커트",
+  upcloth: "상의",
 };
 
 const ColorEdit = () => {
@@ -70,16 +66,16 @@ const ColorEdit = () => {
     }, []);
     dispatch(setColors(colors));
     dispatch(postColor(colors));
-    history.push('/result');
+    history.push("/result");
   };
   const checkedCount = Object.values(checkboxes).filter((val) => val === true)
     .length;
 
   return (
-    <Container>
+    <div>
       <Header />
       <Card>
-        <Content>
+        <div>
           <Desc>
             입고싶은 옷 색깔들을 <br /> 골라주세요.
           </Desc>
@@ -109,9 +105,9 @@ const ColorEdit = () => {
               결과 보기
             </Button>
           </ButtonWrap>
-        </Content>
+        </div>
       </Card>
-    </Container>
+    </div>
   );
 };
 
